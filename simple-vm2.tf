@@ -41,15 +41,15 @@ resource "azurerm_public_ip" "pip-test" {
 }
 
 resource "azurerm_network_interface" "nic-test" {
-  name = "${var.nic_name}"
+  name = "${var.nic_name01}"
   resource_group_name = "${azurerm_resource_group.test-vm.name}"
   location = "${azurerm_resource_group.test-vm.location}"
 
   ip_configuration {
-    name = "${var.ip_config_name}"
+    name = "${var.ip_config_name1}"
     subnet_id = "${azurerm_subnet.subnet-test.id}"
     private_ip_address_allocation = "${var.ip_allocation}"
-    private_ip_address = "${var.private_ip_address01}"
+    private_ip_address = "${var.private_ip_address02}"
     public_ip_address_id = "${data.azurerm_public_ip.datasourceip.id}"
   }
 }
@@ -90,8 +90,8 @@ resource "azurerm_storage_container" "container-test" {
 }
 
 # create vm
-resource "azurerm_virtual_machine" "simple-vm" {
-  name = "${var.vm_name}"
+resource "azurerm_virtual_machine" "simple-vm2" {
+  name = "${var.vm_name1}"
   location = "${azurerm_resource_group.test-vm.location}"
   resource_group_name = "${azurerm_resource_group.test-vm.name}"
   network_interface_ids = ["${azurerm_network_interface.nic-test.id}"]
